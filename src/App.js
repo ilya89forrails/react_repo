@@ -3,53 +3,64 @@ import React, { Component } from 'react';
 import './App.css';
 
 
+ const SLIDES = [
+ 				"img/fjords.jpg",
+ 				"img/mountains.jpg",
+ 				"img/nature.jpg"
+            ]
 
-class App extends Component {
+class App extends Component{
 
-  constructor(props) {
+ constructor(props) {
     super(props);
     this.state = {
-      title: false,
+      slideIndex: 1,
     };
-    this.handleTitle = this.handleTitle.bind(this);
-    this.renderWithoutTitle = this.renderWithoutTitle.bind(this);
-    this.renderWithTitle = this.renderWithTitle.bind(this);
+    this.plusSlides = this.plusSlides.bind(this);
+    this.minusSlides = this.minusSlides.bind(this);
+    this.showSlides = this.showSlides.bind(this);
   }
+      
 
+ plusSlides(){
+ 	this.setState({slideIndex: this.state.slideIndex+1});
+ 	this.showSlides();
+}
 
-  handleTitle(){
-     this.setState({title: !this.state.title});
-  }
-  
+ minusSlides(){
+ 	this.setState({slideIndex: this.state.slideIndex-1});
+ 	this.showSlides();
+}
 
-  renderWithoutTitle() {
+ showSlides(){
+
+    if (this.state.slideIndex >SLIDES.length){
+    	this.setState({slideIndex: 1});
+    }
+
+    if (this.state.slideIndex < 1){
+    	this.setState({slideIndex: SLIDES.length});
+    }
+}
+
+render() {
     return (
       <div className="App">
         <div className="App-header">
-          <button onClick={this.handleTitle} className="btn">CLICK ME</button>
+        	<div className="slideshow-container">
+        		<div className="mySlides fade">
+        			<img src={SLIDES[this.state.slideIndex]} alt="" />
+        			{this.state.slideIndex}
+        		</div>
+        		<a className="prev" onClick={this.minusSlides}>&#10094</a>
+        		<a className="next" onClick={this.plusSlides}>&#10095</a>
+        	</div>
         </div>
       </div>
-            );
-  }
-
-  renderWithTitle() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <button onClick={this.handleTitle} className="btn">CLICK ME</button>
-          <h1>Hello world!</h1>
-        </div>
-      </div>
-            );
+    );
   } 
 
-  render() {
-  	if (this.state.title){
-    	return this.renderWithoutTitle();
-    } else {
-    	return this.renderWithTitle();
-    }  
-  }
 }
+
 
 export default App;
