@@ -18,6 +18,7 @@ class App extends Component{
     };
     this.plusSlides = this.plusSlides.bind(this);
     this.minusSlides = this.minusSlides.bind(this);
+    this.showDots = this.showDots.bind(this);
   }
       
 
@@ -36,6 +37,13 @@ class App extends Component{
  	this.setState({slideIndex: this.state.slideIndex-1});
 	}
 }
+
+ showDots(){
+ 	SLIDES.forEach(function(item, i, arr) {
+  		return <Dot />;
+	})	
+}
+
    
 render() {
     return (
@@ -50,9 +58,7 @@ render() {
         		<a className="prev" onClick={this.minusSlides}>&#10094;</a>
         		<a className="next" onClick={this.plusSlides}>&#10095;</a>
         		<div className="dots">
-        			<span className="dot" onClick=""></span>
-        			<span className="dot" onClick=""></span>
-        			<span className="dot" onClick=""></span>
+        			{this.showDots}
         		</div>
         	</div>
         </div>
@@ -60,6 +66,21 @@ render() {
     );
   } 
 }
+
+
+
+class Dot extends Component{
+	render(){
+		return <span className="dot" onClick=""></span>;
+	}
+}
+
+
+
+
+
+
+
 
 
 export default App;
