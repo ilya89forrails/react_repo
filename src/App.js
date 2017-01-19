@@ -9,7 +9,19 @@ import './App.css';
  				"img/nature.jpg"
             ]
 
+ const DOTS = SLIDES.map((number) =>
+  	<span className="dot" key={number.toString()}></span>
+ );
+
+
 class App extends Component{
+	render(){
+		return <Slider />;
+	}
+}
+
+
+class Slider extends Component{
 
  constructor(props) {
     super(props);
@@ -18,7 +30,7 @@ class App extends Component{
     };
     this.plusSlides = this.plusSlides.bind(this);
     this.minusSlides = this.minusSlides.bind(this);
-    this.showDots = this.showDots.bind(this);
+    this.makeActive = this.makeActive.bind(this);
   }
       
 
@@ -34,15 +46,14 @@ class App extends Component{
  	if (this.state.slideIndex-1 < 0){
     	this.setState({slideIndex: SLIDES.length-1});
     } else {
- 	this.setState({slideIndex: this.state.slideIndex-1});
+ 		this.setState({slideIndex: this.state.slideIndex-1});
 	}
 }
 
- showDots(){
- 	SLIDES.forEach(function(item, i, arr) {
-  		return <Dot />;
-	})	
-}
+ makeActive(){
+ 	//this.setState({slideIndex: DOTS});
+  		alert("hi!");
+	}	
 
    
 render() {
@@ -58,7 +69,8 @@ render() {
         		<a className="prev" onClick={this.minusSlides}>&#10094;</a>
         		<a className="next" onClick={this.plusSlides}>&#10095;</a>
         		<div className="dots">
-        			{this.showDots}
+
+        			{DOTS}
         		</div>
         	</div>
         </div>
