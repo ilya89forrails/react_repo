@@ -15,6 +15,9 @@ const SLIDES = [
             ]
 
 
+const NUM_OF_SLIDES = 2
+const COLOR_ACTIVE_SLIDE = false
+
 
 const App = () => (
     <Slider slides={[
@@ -30,8 +33,7 @@ class Slider extends Component {
         super(props);
         this.state = {
             slideIndex: 0,
-            numOfSlides: 2,
-            colorActiveSlide: false
+
         };
         this.plusSlides = this.plusSlides.bind(this);
         this.minusSlides = this.minusSlides.bind(this);
@@ -63,16 +65,16 @@ class Slider extends Component {
                             {this.props.slides.length &&
                                 this.props.slides.map((slide, i) => (
                                     <img
-                                        className = {`slide${(i >= this.state.slideIndex && i < this.state.slideIndex+this.state.numOfSlides) ? ' active' : ' disabled'}`}
+                                        className = {`slide${(i >= this.state.slideIndex && i < this.state.slideIndex+NUM_OF_SLIDES) ? ' active' : ' disabled'}`}
                                         src={slide}
                                         alt=""
                                         title={i}
-                                        style={{border: (i === this.state.slideIndex && this.state.colorActiveSlide) ? '10px solid orange' : ''}}/>
+                                        style={{border: (i === this.state.slideIndex && COLOR_ACTIVE_SLIDE) ? '10px solid orange' : ''}}/>
                                 ))}
                         </div>
                            Текущий слайд {this.state.slideIndex} <br/>
-                           Количество {this.state.numOfSlides} <br/>
-                           Текущий+количество {this.state.slideIndex + this.state.numOfSlides} <br/>
+                           Количество {NUM_OF_SLIDES} <br/>
+                           Текущий+количество {this.state.slideIndex + NUM_OF_SLIDES} <br/>
                         <a className="prev" onClick={this.minusSlides}>&#10094;</a>
                         <a className="next" onClick={this.plusSlides}>&#10095;</a>
                         <div className="dots">
