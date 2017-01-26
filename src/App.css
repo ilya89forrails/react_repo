@@ -71,6 +71,27 @@
 	animation-duration:1.5s;
 }
 
+
+
+.fade {
+	display: flex;
+}
+
+
+
+
+
+
+
+img {
+    width: 50%; 
+    height: 50%;
+}
+
+
+
+
+
 @-webkit-keyframes fade{
 	from{opacity:.4}
 	to{opacity:1}
