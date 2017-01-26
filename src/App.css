@@ -79,7 +79,9 @@
 
 
 
-
+.disabled {
+	display: none;
+}
 
 
 

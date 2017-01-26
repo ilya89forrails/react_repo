@@ -35,8 +35,6 @@ class Slider extends Component {
         };
         this.plusSlides = this.plusSlides.bind(this);
         this.minusSlides = this.minusSlides.bind(this);
-        this.leftBound = this.leftBound.bind(this);
-        this.rightBound = this.rightBound.bind(this);
     }
 
 
@@ -56,16 +54,6 @@ class Slider extends Component {
         }
     }
 
-    leftBound(){
-        return this.state.slideIndex;
-    }
-
-    rightBound(){
-        return (this.state.slideIndex + this.state.numOfSlides);
-    }
-
-
-
     render() {
         return (
             <div className="App">
@@ -73,10 +61,12 @@ class Slider extends Component {
                     <div className="slideshow-container">
                         <div className="mySlides fade">
                             {this.props.slides.length &&
-                                this.props.slides.slice(this.state.slideIndex, this.state.slideIndex + this.state.numOfSlides).map((slide, i) => (
+                                this.props.slides.map((slide, i) => (
                                     <img
+                                        className = {`slide${(i >= this.state.slideIndex && i < this.state.slideIndex+this.state.numOfSlides) ? ' active' : ' disabled'}`}
                                         src={slide}
                                         alt=""
+                                        title={i}
                                         style={{border: (i === this.state.slideIndex && this.state.colorActiveSlide) ? '10px solid orange' : ''}}/>
                                 ))}
                         </div>
