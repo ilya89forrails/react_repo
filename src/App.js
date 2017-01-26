@@ -8,6 +8,14 @@ import './App.css';
     }
 }*/
 
+const SLIDES = [
+               "img/fjords.jpg",
+               "img/mountains.jpg",
+               "img/nature.jpg"
+            ]
+
+
+
 const App = () => (
     <Slider slides={[
         "img/fjords.jpg",
@@ -22,10 +30,13 @@ class Slider extends Component {
         super(props);
         this.state = {
             slideIndex: 0,
+            numOfSlides: 2,
+            colorActiveSlide: false
         };
         this.plusSlides = this.plusSlides.bind(this);
         this.minusSlides = this.minusSlides.bind(this);
-        this.makeActive = this.makeActive.bind(this);
+        this.leftBound = this.leftBound.bind(this);
+        this.rightBound = this.rightBound.bind(this);
     }
 
 
@@ -45,10 +56,14 @@ class Slider extends Component {
         }
     }
 
-    makeActive() {
-        //this.setState({slideIndex: DOTS});
-        alert("hi!");
+    leftBound(){
+        return this.state.slideIndex;
     }
+
+    rightBound(){
+        return (this.state.slideIndex + this.state.numOfSlides);
+    }
+
 
 
     render() {
@@ -58,15 +73,16 @@ class Slider extends Component {
                     <div className="slideshow-container">
                         <div className="mySlides fade">
                             {this.props.slides.length &&
-                                this.props.slides.map((slide, i) => (
+                                this.props.slides.slice(this.state.slideIndex, this.state.slideIndex + this.state.numOfSlides).map((slide, i) => (
                                     <img
                                         src={slide}
                                         alt=""
-                                        style={{display: (i === this.state.slideIndex) ? 'block' : 'none'}}/>
+                                        style={{border: (i === this.state.slideIndex && this.state.colorActiveSlide) ? '10px solid orange' : ''}}/>
                                 ))}
-                            {/*this.state.slideIndex*/}
-                            {/*SLIDES.length*/}
                         </div>
+                           Текущий слайд {this.state.slideIndex} <br/>
+                           Количество {this.state.numOfSlides} <br/>
+                           Текущий+количество {this.state.slideIndex + this.state.numOfSlides} <br/>
                         <a className="prev" onClick={this.minusSlides}>&#10094;</a>
                         <a className="next" onClick={this.plusSlides}>&#10095;</a>
                         <div className="dots">
