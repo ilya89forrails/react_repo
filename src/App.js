@@ -32,6 +32,7 @@ class Slider extends Component {
         };
         this.plusSlides = this.plusSlides.bind(this);
         this.minusSlides = this.minusSlides.bind(this);
+        this.loopCheck = this.loopCheck.bind(this);
     }
 
     plusSlides() {
@@ -50,6 +51,18 @@ class Slider extends Component {
         }
     }
 
+    loopCheck(i){
+        var result;
+        result = `slide${(i >= this.state.slideIndex && i < this.state.slideIndex + this.props.numOfSlides) ? ' active' : ' disabled'}`;
+        
+        if(this.state.numOfSlides - (SLIDES.length - this.state.slideIndex)>0){
+
+        }
+  
+
+        return(result);
+    }
+
     render() {
         return (
             <div className="App">
@@ -59,7 +72,7 @@ class Slider extends Component {
                             {this.props.slides.length &&
                                 this.props.slides.map((slide, i) => (
                                     <img
-                                        className = {`slide${(i >= this.state.slideIndex && i < this.state.slideIndex + this.props.numOfSlides) ? ' active' : ' disabled'}`}
+                                        className = {this.loopCheck(i)}
                                         src={slide}
                                         alt=""
                                         title={i}
