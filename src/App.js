@@ -15,7 +15,7 @@ const SLIDES = [
             ]
 
 const App = () => (
-    <Slider colorActiveSlide={true} numOfSlides={2} slides={[
+    <Slider colorActiveSlide={false} numOfSlides={2} slides={[
         "img/fjords.jpg",
         "img/mountains.jpg",
         "img/nature.jpg"
@@ -27,8 +27,7 @@ class Slider extends Component {
         super(props);
         this.state = {
             slideIndex: 0,
-            colorActiveSlide: props.colorActiveSlide,
-            numOfSlides: props.numOfSlides
+            visibleSlides: [0,1]//new Array(this.props.numOfSlides).fill().map((e,i)=>i+1)
         };
         this.plusSlides = this.plusSlides.bind(this);
         this.minusSlides = this.minusSlides.bind(this);
@@ -36,29 +35,39 @@ class Slider extends Component {
     }
 
     plusSlides() {
-        if (this.state.slideIndex + 1 > SLIDES.length - 1) {
-            this.setState({slideIndex: 0});
-        } else {
-            this.setState({slideIndex: this.state.slideIndex + 1});
-        }
+            let arr = this.state.visibleSlides;
+            for (let n = 0; n < arr.length; n++) {
+                arr[n]++;
+                if(arr[n]>SLIDES.length-1){
+                    arr[n]=arr[n] - SLIDES.length;
+                }
+            }
+
+            this.setState({slideIndex: arr[0]});
+            this.setState({visibleSlides: arr});
     }
 
     minusSlides() {
-        if (this.state.slideIndex - 1 < 0) {
-            this.setState({slideIndex: SLIDES.length - 1});
-        } else {
-            this.setState({slideIndex: this.state.slideIndex - 1});
-        }
+            let arr = this.state.visibleSlides;
+            for (let n = 0; n < arr.length; n++) {
+                arr[n]--;
+                if(arr[n]<0){
+                    arr[n]=arr[n] + SLIDES.length;
+                }
+            }
+            this.setState({slideIndex: arr[0]});
+            this.setState({visibleSlides: arr});
     }
 
     loopCheck(i){
         var result;
-        result = `slide${(i >= this.state.slideIndex && i < this.state.slideIndex + this.props.numOfSlides) ? ' active' : ' disabled'}`;
+        //result = `slide${(i >= this.state.slideIndex && i < this.state.slideIndex + this.props.numOfSlides) ? ' active' : ' disabled'}`;
         
-        if(this.state.numOfSlides - (SLIDES.length - this.state.slideIndex)>0){
+        //if(this.state.numOfSlides - (SLIDES.length - this.state.slideIndex)>0){
 
-        }
+        //}
   
+        result = `slide${(this.state.visibleSlides.includes(i)) ? ' active' : ' disabled'}`;
 
         return(result);
     }
