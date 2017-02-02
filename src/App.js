@@ -10,15 +10,47 @@ import './App.css';
 
 const SLIDES = [
                "img/fjords.jpg",
+               "img/nature.jpg",
                "img/mountains.jpg",
-               "img/nature.jpg"
+               "img/australia.jpg",
+               "img/avalon.jpg",
+               "img/bird.jpg",
+               "img/boat.jpg",
+               "img/colorado.jpg",
+               "img/croatia.jpg",
+               "img/fall.jpg",
+               "img/forrest.jpg",
+               "img/fuckin_huge_mountain.jpg",
+               "img/house.jpg",
+               "img/montana.jpg",
+               "img/morocco.jpg",
+               "img/neyork.jpg",
+               "img/pool.jpg",
+               "img/ribarica-vrsar.jpg",
+               "img/Serenity.jpg"
             ]
 
 const App = () => (
     <Slider colorActiveSlide={false} numOfSlides={2} slides={[
-        "img/fjords.jpg",
-        "img/mountains.jpg",
-        "img/nature.jpg"
+               "img/fjords.jpg",
+               "img/nature.jpg",
+               "img/mountains.jpg",
+               "img/australia.jpg",
+               "img/avalon.jpg",
+               "img/bird.jpg",
+               "img/boat.jpg",
+               "img/colorado.jpg",
+               "img/croatia.jpg",
+               "img/fall.jpg",
+               "img/forrest.jpg",
+               "img/fuckin_huge_mountain.jpg",
+               "img/house.jpg",
+               "img/montana.jpg",
+               "img/morocco.jpg",
+               "img/neyork.jpg",
+               "img/pool.jpg",
+               "img/ribarica-vrsar.jpg",
+               "img/Serenity.jpg"
     ]} />
 );
 
@@ -60,15 +92,8 @@ class Slider extends Component {
     }
 
     loopCheck(i){
-        var result;
-        //result = `slide${(i >= this.state.slideIndex && i < this.state.slideIndex + this.props.numOfSlides) ? ' active' : ' disabled'}`;
-        
-        //if(this.state.numOfSlides - (SLIDES.length - this.state.slideIndex)>0){
-
-        //}
-  
+        var result;  
         result = `slide${(this.state.visibleSlides.includes(i)) ? ' active' : ' disabled'}`;
-
         return(result);
     }
 
@@ -88,9 +113,6 @@ class Slider extends Component {
                                         style={{border: (i === this.state.slideIndex && this.props.colorActiveSlide) ? '10px solid orange' : ''}}/>
                                 ))}
                         </div>
-                           Текущий слайд {this.state.slideIndex} <br/>
-                           Количество {this.props.numOfSlides} <br/>
-                           Текущий+количество {this.state.slideIndex + this.props.numOfSlides} <br/>
                         <a className="prev" onClick={this.minusSlides}>&#10094;</a>
                         <a className="next" onClick={this.plusSlides}>&#10095;</a>
                         <div className="dots">
@@ -115,3 +137,24 @@ class Dot extends Component {
 }
 
 export default App;
+
+
+/*
+              "img/australia.jpg",
+               "img/avalon.jpg",
+               "img/bird.jpg",
+               "img/boat.jpg",
+               "img/colorado.jpg",
+               "img/croatia.jpg",
+               "img/fall.jpg",
+               "img/forrest.jpg",
+               "img/fuckin_huge_mountain.jpg",
+               "img/house.jpg",
+               "img/montana.jpg",
+               "img/morocco.jpg",
+               "img/neyork.jpg",
+               "img/pool.jpg",
+               "img/ribarica-vrsar.jpg",
+               "img/Serenity.jpg"
+
+*/
