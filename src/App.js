@@ -9,49 +9,32 @@ import './App.css';
 }*/
 
 const SLIDES = [
-               "img/fjords.jpg",
-               "img/nature.jpg",
-               "img/mountains.jpg",
-               "img/australia.jpg",
-               "img/avalon.jpg",
-               "img/bird.jpg",
-               "img/boat.jpg",
-               "img/colorado.jpg",
-               "img/croatia.jpg",
-               "img/fall.jpg",
-               "img/forrest.jpg",
-               "img/fuckin_huge_mountain.jpg",
-               "img/house.jpg",
-               "img/montana.jpg",
-               "img/morocco.jpg",
-               "img/neyork.jpg",
-               "img/pool.jpg",
-               "img/ribarica-vrsar.jpg",
-               "img/Serenity.jpg"
-            ]
+   "img/fjords.jpg",
+   "img/nature.jpg",
+   "img/mountains.jpg",
+   "img/australia.jpg",
+   "img/avalon.jpg",
+   "img/bird.jpg",
+   "img/boat.jpg",
+   "img/colorado.jpg",
+   "img/croatia.jpg",
+   "img/fall.jpg",
+   "img/forrest.jpg",
+   "img/fuckin_huge_mountain.jpg",
+   "img/house.jpg",
+   "img/montana.jpg",
+   "img/morocco.jpg",
+   "img/neyork.jpg",
+   "img/pool.jpg",
+   "img/ribarica-vrsar.jpg",
+   "img/Serenity.jpg"
+];
 
 const App = () => (
-    <Slider colorActiveSlide={false} numOfSlides={2} slides={[
-               "img/fjords.jpg",
-               "img/nature.jpg",
-               "img/mountains.jpg",
-               "img/australia.jpg",
-               "img/avalon.jpg",
-               "img/bird.jpg",
-               "img/boat.jpg",
-               "img/colorado.jpg",
-               "img/croatia.jpg",
-               "img/fall.jpg",
-               "img/forrest.jpg",
-               "img/fuckin_huge_mountain.jpg",
-               "img/house.jpg",
-               "img/montana.jpg",
-               "img/morocco.jpg",
-               "img/neyork.jpg",
-               "img/pool.jpg",
-               "img/ribarica-vrsar.jpg",
-               "img/Serenity.jpg"
-    ]} />
+    <Slider
+        colorActiveSlide={false}
+        numOfSlides={5}
+        slides={SLIDES} />
 );
 
 class Slider extends Component {
@@ -59,12 +42,20 @@ class Slider extends Component {
         super(props);
         this.state = {
             slideIndex: 0,
-            visibleSlides: [0,1]//new Array(this.props.numOfSlides).fill().map((e,i)=>i+1)
+            visibleSlides: new Array(this.props.numOfSlides).map((e,i) => i)
         };
         this.plusSlides = this.plusSlides.bind(this);
         this.minusSlides = this.minusSlides.bind(this);
         this.loopCheck = this.loopCheck.bind(this);
     }
+
+	static propTypes = {
+
+	};
+
+    static defaultProps = {
+
+	};
 
     plusSlides() {
             let arr = this.state.visibleSlides;
@@ -92,9 +83,7 @@ class Slider extends Component {
     }
 
     loopCheck(i){
-        var result;  
-        result = `slide${(this.state.visibleSlides.includes(i)) ? ' active' : ' disabled'}`;
-        return(result);
+        return `slide${(this.state.visibleSlides.includes(i)) ? ' active' : ' disabled'}`;
     }
 
     render() {
@@ -137,24 +126,3 @@ class Dot extends Component {
 }
 
 export default App;
-
-
-/*
-              "img/australia.jpg",
-               "img/avalon.jpg",
-               "img/bird.jpg",
-               "img/boat.jpg",
-               "img/colorado.jpg",
-               "img/croatia.jpg",
-               "img/fall.jpg",
-               "img/forrest.jpg",
-               "img/fuckin_huge_mountain.jpg",
-               "img/house.jpg",
-               "img/montana.jpg",
-               "img/morocco.jpg",
-               "img/neyork.jpg",
-               "img/pool.jpg",
-               "img/ribarica-vrsar.jpg",
-               "img/Serenity.jpg"
-
-*/
